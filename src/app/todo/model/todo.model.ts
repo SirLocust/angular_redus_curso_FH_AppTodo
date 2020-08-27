@@ -20,5 +20,8 @@ export class Todo {
         return this.completado;
     }
 
+    setCompletado(completado: boolean): void{
+        this.completado = completado;
+    }
 
 }
