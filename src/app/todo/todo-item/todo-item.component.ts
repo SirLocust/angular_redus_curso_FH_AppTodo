@@ -1,3 +1,6 @@
+import { ToggleTodoAction } from './../todo.actions';
+import { AppState } from './../../app.reducers';
+import { Store } from '@ngrx/store';
 import { FormControl, Validators } from '@angular/forms';
 import { Todo } from './../model/todo.model';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
@@ -5,31 +8,38 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
-  styleUrls: ['./todo-item.component.css']
+  styleUrls: ['./todo-item.component.css'],
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todoItem:Todo;
+  @Input() todoItem: Todo;
   @ViewChild('txtInputFisico') txtInputFisico: ElementRef;
   chkField: FormControl;
-  txtInput: FormControl
-  editandoTodo: boolean
-  constructor() { }
+  txtInput: FormControl;
+  editandoTodo: boolean;
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.chkField = new FormControl(this.todoItem.getCompletado());
-    this.txtInput = new FormControl(this.todoItem.getTexto(),Validators.required);
+    this.txtInput = new FormControl(
+      this.todoItem.getTexto(),
+      Validators.required
+    );
+
+    this.chkField.valueChanges
+            .subscribe( () => {
+              const accion = new ToggleTodoAction(this.todoItem.getId())
+              this.store.dispatch(accion);
+            })
   }
 
-  editarTodo(){
+  editarTodo() {
     this.editandoTodo = true;
 
     setTimeout(() => {
       this.txtInputFisico.nativeElement.select();
-      
     }, 1);
   }
-  terminarEdicion(){
-    this.editandoTodo = false
+  terminarEdicion() {
+    this.editandoTodo = false;
   }
-
 }

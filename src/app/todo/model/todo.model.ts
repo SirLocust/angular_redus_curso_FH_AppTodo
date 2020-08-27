@@ -3,11 +3,13 @@ export class Todo {
     private texto: String;
     private completado:boolean
     
+    
     constructor(texto: String){
         this.texto = texto.charAt(0).toUpperCase() + texto.slice(1) ;
         this.completado = false;
         this.id = Math.random();
     }
+
 
     getTexto(): String{
         return this.texto
@@ -22,6 +24,13 @@ export class Todo {
 
     setCompletado(completado: boolean): void{
         this.completado = completado;
+    }
+
+    getId():number{
+        return this.id;
+    }
+    setId(id:number):void{
+        this.id = id
     }
 
 }

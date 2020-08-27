@@ -1,5 +1,4 @@
-<li [ngClass]="{ completed: todoItem.getCompletado(),
-        editing: editandoTodo}">
+<li [ngClass]="{ completed: todoItem.getCompletado(), editing: editandoTodo }">
   <div class="view">
     <input
       class="toggle"
@@ -7,8 +6,14 @@
       type="checkbox"
       [checked]="todoItem.getCompletado()"
     />
-    <label (dblclick)="editarTodo()" >{{ todoItem.getTexto() }}</label>
+    <label (dblclick)="editarTodo()">{{ todoItem.getTexto() }}</label>
     <button class="destroy"></button>
   </div>
-  <input (blur)="terminarEdicion()" #txtInputFisico class="edit" [value]="todoItem.getTexto()" [formControl]="txtInput" />
+  <input
+    (blur)="terminarEdicion()"
+    #txtInputFisico
+    class="edit"
+    [value]="todoItem.getTexto()"
+    [formControl]="txtInput"
+  />
 </li>
