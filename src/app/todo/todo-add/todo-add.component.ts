@@ -1,3 +1,4 @@
+import { Todo } from './../model/todo.model';
 import { AppState } from './../../app.reducers';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';

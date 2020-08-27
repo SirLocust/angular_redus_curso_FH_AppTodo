@@ -1,7 +1,7 @@
-<li class="completed">
+<li  [ngClass]="{completed: todoItem.getCompletado() == true  }">
     <div class="view">
       <input class="toggle" type="checkbox" checked>
-      <label>Taste JavaScript</label>
+      <label>{{todoItem.getTexto()}}</label>
       <button class="destroy"></button>
     </div>
     <input class="edit" value="Create a TodoMVC template">

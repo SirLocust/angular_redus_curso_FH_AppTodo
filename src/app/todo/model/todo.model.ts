@@ -9,5 +9,16 @@ export class Todo {
         this.id = Math.random();
     }
 
+    getTexto(): String{
+        return this.texto
+    }
+    setTexto(texto:String):void{
+        this.texto =texto;
+    }
+
+    getCompletado():boolean{
+        return this.completado;
+    }
+
 
 }
