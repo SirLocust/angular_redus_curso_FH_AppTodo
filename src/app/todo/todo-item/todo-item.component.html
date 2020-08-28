@@ -7,10 +7,11 @@
       [checked]="todoItem.getCompletado()"
     />
     <label (dblclick)="editarTodo()">{{ todoItem.getTexto() }}</label>
-    <button class="destroy"></button>
+    <button class="destroy" (click)="borrarTodo()"></button>
   </div>
   <input
     (blur)="terminarEdicion()"
+    (keydown.enter)="terminarEdicion()"
     #txtInputFisico
     class="edit"
     [value]="todoItem.getTexto()"

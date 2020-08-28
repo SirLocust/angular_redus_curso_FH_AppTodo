@@ -1,4 +1,4 @@
-import { ToggleTodoAction } from './../todo.actions';
+import { ToggleTodoAction, updateTodoAction, BorrarTodoAction } from './../todo.actions';
 import { AppState } from './../../app.reducers';
 import { Store } from '@ngrx/store';
 import { FormControl, Validators } from '@angular/forms';
@@ -25,11 +25,10 @@ export class TodoItemComponent implements OnInit {
       Validators.required
     );
 
-    this.chkField.valueChanges
-            .subscribe( () => {
-              const accion = new ToggleTodoAction(this.todoItem.getId())
-              this.store.dispatch(accion);
-            })
+    this.chkField.valueChanges.subscribe(() => {
+      const accion = new ToggleTodoAction(this.todoItem.getId());
+      this.store.dispatch(accion);
+    });
   }
 
   editarTodo() {
@@ -39,7 +38,24 @@ export class TodoItemComponent implements OnInit {
       this.txtInputFisico.nativeElement.select();
     }, 1);
   }
+
   terminarEdicion() {
     this.editandoTodo = false;
+    const valueTodoInput = this.txtInput.value;
+
+    if (valueTodoInput !== '') {
+      const accionActualizarTodo = new updateTodoAction(
+        valueTodoInput,
+        this.todoItem.getId()
+      );
+      this.store.dispatch(accionActualizarTodo);
+    } else {
+      console.log('la nota no debe estar vacia');
+    }
+    // console.log(this.txtInputFisico.nativeElement)
+  }
+  borrarTodo(){
+    const accionBorrarTodo =  new BorrarTodoAction(this.todoItem.getId())
+    this.store.dispatch(accionBorrarTodo);
   }
 }
