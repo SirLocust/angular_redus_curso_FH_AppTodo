@@ -21,6 +21,8 @@ export function todoReducer(
       return logicActualizarTodo(state, action);
     case fromTodo.BORRAR_TODO:
       return logicBorrarTodo(state, action);
+    case fromTodo.COMPLETAR_TODOS:
+      return logicCompletarTodos(state, action);
     default:
       return state;
   }
@@ -32,8 +34,9 @@ const logicActualizarTodo = (
 ): Todo[] => {
   return state.map((todoEdit) => {
     if (todoEdit.getId() == action.id) {
-      const todo = new Todo(action.text);
-      todo.setId(action.id);
+      const todo:Todo =todoEdit.copyTodo()
+      todo.setTexto(action.text);
+
       return todo;
     } else {
       return todoEdit;
@@ -47,9 +50,8 @@ const logicToggleTodo = (
 ): Todo[] => {
   return state.map((todoEdit) => {
     if (todoEdit.getId() === action.id) {
-      const todo = new Todo(todoEdit.getTexto());
+      const todo: Todo = todoEdit.copyTodo();
       todo.setCompletado(!todoEdit.getCompletado());
-      todo.setId(todoEdit.getId());
       return todo;
     } else {
       return todoEdit;
@@ -59,4 +61,19 @@ const logicToggleTodo = (
 
 const logicBorrarTodo = (state: Todo[], action: fromTodo.BorrarTodoAction) => {
   return state.filter((todoEdit: Todo) => todoEdit.getId() !== action.id);
+};
+
+const logicCompletarTodos = (
+  state: Todo[],
+  action: fromTodo.completarTodosTodoAction
+) => {
+  return state.map((todoEdit: Todo) => {
+    if (todoEdit.getCompletado() !== action.completar) {
+      const todo:Todo = todoEdit.copyTodo();
+      todo.setCompletado(!todoEdit.getCompletado())
+      return todo; 
+    } else {
+      return todoEdit;
+    }
+  });
 };

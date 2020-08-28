@@ -10,7 +10,13 @@ export class Todo {
         this.id = Math.random();
     }
 
-
+    copyTodo():Todo{
+        const todo = new Todo(this.texto);
+        todo.setCompletado(this.completado);
+        todo.setId(this.id);
+        return todo;
+        
+    }
     getTexto(): String{
         return this.texto
     }
