@@ -1,3 +1,6 @@
+import { AppState } from './../../app.reducers';
+import { Store } from '@ngrx/store';
+import { filtrosValidos, SetFiltroAction } from './../../filter/filter.actions';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoFooterComponent implements OnInit {
 
-  constructor() { }
+  filtrosValidosComp: filtrosValidos[] = ['todos','completados','pendientes'];
+  filtroActual:filtrosValidos ="todos"
+  constructor( private store:Store<AppState>) { }
 
   ngOnInit(): void {
+
+    this.store.subscribe( state => {
+      this.filtroActual = state.filtro
+    })
+  } 
+
+  cambiarFiltro( nuevoFiltro: filtrosValidos):void{
+    const accionNuevoFiltro = new SetFiltroAction(nuevoFiltro);
+    this.store.dispatch(accionNuevoFiltro);
   }
 
 }
