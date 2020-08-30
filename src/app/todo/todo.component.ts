@@ -1,6 +1,6 @@
 import { AppState } from './../app.reducers';
 import { Store } from '@ngrx/store';
-import { completarTodosTodoAction } from './todo.actions';
+import { CompletarTodosTodoAction } from './todo.actions';
 import { Component, OnInit } from '@angular/core';
 import { todoReducer } from './todo.reducer';
 
@@ -19,7 +19,7 @@ export class TodoComponent implements OnInit {
 
   CompletarTodos():void{
     this.completar = !this.completar
-    const accionCompletarTodos = new completarTodosTodoAction(this.completar);
+    const accionCompletarTodos = new CompletarTodosTodoAction(this.completar);
     this.store.dispatch(accionCompletarTodos)
   }
 

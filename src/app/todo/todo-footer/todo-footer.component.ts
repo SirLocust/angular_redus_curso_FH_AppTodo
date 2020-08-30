@@ -1,3 +1,4 @@
+import { BorrarTodosCompletadosTodoAction } from './../todo.actions';
 import { Todo } from './../model/todo.model';
 import { AppState } from './../../app.reducers';
 import { Store } from '@ngrx/store';
@@ -31,6 +32,11 @@ export class TodoFooterComponent implements OnInit {
 
   contarPendientes(todos: Todo[]):void{
     this.tareasPendientes = todos.filter( todo => !todo.getCompletado()).length;
+  }
+  
+  borrarCompletadosTodos():void{
+    const accionBorrarCompletados = new BorrarTodosCompletadosTodoAction();
+    this.store.dispatch(accionBorrarCompletados);
   }
 
 }

@@ -20,7 +20,7 @@ export class FilterPipe implements PipeTransform {
 
 
 
-    
+     
   }
 
   filterCompletadosPendientes(todos: Todo[],estado: boolean):Todo[]{
