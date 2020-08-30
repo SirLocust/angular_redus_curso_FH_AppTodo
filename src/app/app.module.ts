@@ -36,7 +36,7 @@ import { FilterPipe } from './filter/filter.pipe';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     StoreModule.forRoot( reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
