@@ -1,6 +1,33 @@
+<style>
+.red {color: red}
+</style>
+
+
+
+
+
+<p class="red">red text</p>
+
+
 # TodoApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
+
+<h1>Hola Mundo</h1>
+
+<pre>
+<code>
+  <style>
+      .code-style {
+        font-size: 20px;
+        line-height: 28px;
+        background-color: lightblue;
+        color: #ffffff;
+      }
+    </style>
+</code>
+</pre>
+
 
 ## Development server
 
